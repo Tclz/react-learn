@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>react learn</title>
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    //与函数组件等价
+    class Component extends React.Component{
+        render(){
+            return <h1>hello, {this.props.name}</h1>;
+        }
+    }
+    //组件名称必须以大写字母开头
+    ReactDOM.render(<Component name="myFirstComponent"/>,document.getElementById("root"));
+</script>
+</body>
+</html>

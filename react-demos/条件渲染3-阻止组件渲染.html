@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>react learn</title>
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    function WarningBar(props){
+        console.log(props.warn)
+        if(!props.warn){
+            return null;
+        }
+        return (<div className="warning">Warning!</div>);
+    }
+    class Page extends React.Component{
+        constructor(props){
+            super(props);
+            this.state = {showWarning : true};
+            //绑定
+            this.handleClick = this.handleClick.bind(this);
+        }
+        handleClick(){
+            this.setState(state => ({showWarning:!state.showWarning}));
+        }
+        render(){
+            return(<div>
+                <WarningBar warn={this.state.showWarning}/>
+                <button onClick={this.handleClick}>{this.state.showWarning ? "Hide" : "Show"}</button>
+                </div>);
+        }
+    }
+    ReactDOM.render(<Page/>,document.getElementById("root"));
+</script>
+</body>
+</html>

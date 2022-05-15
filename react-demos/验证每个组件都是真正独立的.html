@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>react learn</title>
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    function FormatDate(props){
+        return <h2>{props.date.toLocaleTimeString()}</h2>;
+    }
+    class Clock extends React.Component{
+        constructor(props){
+            super(props);
+            this.state = {date : new Date()};
+        }
+        render(){
+            return (<div>
+            <h1>hello, world!</h1>
+            <FormatDate date={this.state.date}/>
+            </div>);
+        }
+        componentDidMount(){
+            this.timeID = setInterval(
+                ()=>this.tick(),
+                1000);
+        }
+        componentWillUnmount(){
+            clearInterval(this.timeID);
+        }
+        tick(){
+        this.setState(
+            {
+            date: new Date()
+            });
+        }
+    }
+    //设置三个Clock 验证每个组件都是独立的
+    //效果 每个Clock组件会各自更新自己的时间 互不影响
+    function App(){
+        return (<div>
+            <Clock/>
+            <Clock/>
+            <Clock/>
+            </div>);
+    }
+    
+    ReactDOM.render(<App/>,document.getElementById("root"));
+</script>
+</body>
+</html>

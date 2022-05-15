@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>react learn</title>
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    //渲染一个让用户切换开关状态的按钮
+    class Toggle extends React.Component{
+        constructor(props){
+            super(props);
+            this.state = {isToggleOn:true};
+            //绑定
+            this.handleClick = this.handleClick.bind(this);
+        }
+        handleClick(){
+            return this.setState(state => ({isToggleOn : !state.isToggleOn}));
+        }
+        render(){
+            //小心this.handleClick
+            return (<button onClick={this.handleClick}>
+                {this.state.isToggleOn ? "OFF":"ON"}</button>)
+        }
+    }
+    ReactDOM.render(<Toggle/>,document.getElementById("root"));
+</script>
+</body>
+</html>
